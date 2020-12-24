@@ -3,24 +3,25 @@ import {
   Link
 } from "react-router-dom";
 function product(props) {
-    const {product} = props;
+  const {product} = props;
 
-    return (
-        <div>
-            <div className="card">
-                  <Link to={`/product/${product.id_product}`}>
-                    <img className="medium" height={300} src={product.image} alt="product" />
-                  </Link>
-                  <div className="card-body">
-                  <Link to={`/product/${product.id_product}`}>
-                    <h2 className="card-title"> {product.name_product}</h2>
-                  </Link>
-                    <p  className="card-text">{product.unit_product}</p>
-                    <div className="price">{product.price_product}đ</div>
-                  </div>
-              </div>
-        </div>
-    );
+  return (
+  <div className="col-md-3 prdct-grid">
+    <Link to={`/product/${product.id_product}`}>
+    <div className="product-fade">
+      <div className="product-fade-wrap">
+        <div className="item" ><img src= {product.image} alt={product.image} className="img-responsive" /></div>
+      </div>
+    </div>
+    </Link>
+    <div className="product-name">
+      <Link to={`/product/${product.id_product}`} > {product.name_product} </Link>
+    </div>
+    
+      <div className="product-price">
+       {product.price_product}
+    </div>
+  </div>);
 }
 
 export default product;
