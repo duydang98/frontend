@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Product from '../components/Product';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
-import  axios from 'axios';
-import {
-    Link
-  } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { listProduct } from '../actions/productAction';
 function Shop(props) {
-    const [products,setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [err, setErr] = useState(false);
   
+  const dispatch = useDispatch();
+    const productList = useSelector((state) => state.productList);
+    const {loading,error,products} = productList;
+
     useEffect(()=>{
-      const fecthData = async ()=>{
-        try {
-          setLoading(true);
-          const {data} = await axios.get('/product');
-          setLoading(false);
-          setProducts(data);
-        } catch (error) {
-          setErr(error.message);
-          setLoading(false);
-        }
-        
-      }
-      fecthData();
-  
+      dispatch(listProduct());
     },[]);
+
     return (
         <div id="content">
         <div className="newest">
@@ -46,8 +33,8 @@ function Shop(props) {
                       {loading? (
                             <LoadingBox></LoadingBox>
                             )
-                            : err ? (
-                                <MessageBox>{err}</MessageBox>
+                            : error ? (
+                                <MessageBox> {error}</MessageBox>
                             ):
                            (
                             
@@ -59,9 +46,20 @@ function Shop(props) {
                       
                       }
                           
-                     
+                          
                       </div>
                   </div>
+                  <nav>
+                            <div className="pag-center">
+                                <ul className="pagination believe-pag"> 
+                                    <li className="active"><span>1</span></li>
+                                    <li><a href="/">2</a></li>
+                                    <li><a href="/">3</a></li>
+                                    <li><a href="/">4</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+
                 </div>
               </div>
             </div>

@@ -9,9 +9,9 @@ function Footer(props) {
                           <div className="col-md-3">
                               <div className="text-widget">
                                   <div className="wid-title">Welcome to</div>
-                                  <img src="images/logo2.png" alt="ft-logo"/>
+                                  <img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608874660/Images/logo_2_ucqwdc.png" alt="ft-logo"/>
                                   <p>
-                                      Believe isCommerce WordPress theme. It has<br/>everything you need to start selling today! <a href="">Get this theme on ThemeForest!</a>
+                                     Flower Shop isCommerce React theme. It has<br/>everything you need to start selling today! <a href="/">Get this theme on ThemeForest!</a>
                                   </p>
                                   <ul className="ft-soc clearfix">
                                       <li><a href="/"><i className="fa fa-facebook-square"></i></a></li>
@@ -27,12 +27,12 @@ function Footer(props) {
                               <div className="quick-links">
                                   <div className="wid-title">Quick Links</div>
                                   <ul>
-                                      <li><a href="index.html">Home</a></li>
-                                      <li><a href="#">About US</a></li>
-                                      <li><a href="contact.html">contact US</a></li>
-                                      <li><a href="#">deals</a></li>
-                                      <li><a href="blog.html">blog</a></li>
-                                      <li><a href="#">help</a></li>
+                                      <li><a href="/">Home</a></li>
+                                      <li><a href="/about">About US</a></li>
+                                      <li><a href="/contact">contact US</a></li>
+                                      <li><a href="/deals">deals</a></li>
+                                      <li><a href="/blog">blog</a></li>
+                                      <li><a href="/help">help</a></li>
                                   </ul>
                               </div>
                           </div>
@@ -40,10 +40,10 @@ function Footer(props) {
                               <div className="term">
                                   <div className="wid-title">&nbsp;</div>
                                   <p>
-                                      <a href="#">Tearms & condition</a><br/>
-                                      <a href="#">FAQs</a><br/>
-                                      <a href="#">Privacy Policy</a><br/>
-                                      <a href="#">Legal Desclaimer</a><br/>
+                                      <a href="/">Tearms & condition</a><br/>
+                                      <a href="/">FAQs</a><br/>
+                                      <a href="/">Privacy Policy</a><br/>
+                                      <a href="/">Legal Desclaimer</a><br/>
                                   </p>
                               </div>
                           </div>
@@ -52,12 +52,12 @@ function Footer(props) {
                                   <div className="wid-title">My Account</div>
                                   
                                   <ul>
-                                      <li><a href="#">My Account</a></li>
-                                      <li><a href="#">Personal Information</a></li>
-                                      <li><a href="#">Addresses</a></li>
-                                      <li><a href="#">Orders</a></li>
-                                      <li><a href="#">Wishlist</a></li>
-                                      <li><a href="#">track order</a></li>
+                                      <li><a href="/">My Account</a></li>
+                                      <li><a href="/">Personal Information</a></li>
+                                      <li><a href="/">Addresses</a></li>
+                                      <li><a href="/">Orders</a></li>
+                                      <li><a href="/">Wishlist</a></li>
+                                      <li><a href="/">track order</a></li>
                                   </ul>
                               </div>
                           </div>

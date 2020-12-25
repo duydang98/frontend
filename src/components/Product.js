@@ -19,7 +19,8 @@ function product(props) {
     </div>
     
       <div className="product-price">
-       {product.price_product}
+      
+       $ {product.price_product}
     </div>
   </div>);
 }

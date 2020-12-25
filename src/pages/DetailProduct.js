@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data';
+import { useDispatch, useSelector } from 'react-redux';
+import { detailProduct } from '../actions/productAction';
+import MessageBox from '../components/MessageBox';
+import LoadingBox from '../components/LoadingBox';
 function DetailProduct(props) {
-    const product = data.products.find(x => (
-        x._id === props.match.params.id
-    ));
+    const dispatch = useDispatch();
+    const productDetail = useSelector((state) => state.productDetail);
+    const {loading,error,product} = productDetail;
+    console.log(product);
+
+    useEffect(()=>{
+      dispatch(detailProduct(props.match.params.id));
+  
+    },[]);
     return (
         <div id="content">
         <div className="newest">
@@ -24,7 +33,13 @@ function DetailProduct(props) {
                   <div className="card">
 			        
                       <div className="row clearfix">
-                      {!product && <h1>Product Not Found</h1>}                          
+                          {
+                              loading && (<LoadingBox></LoadingBox>) 
+                          }
+                          {
+                              error && <MessageBox> {error}</MessageBox>
+                          }
+                         
                             {product && 
                             (  
                               <div>
@@ -46,6 +61,14 @@ function DetailProduct(props) {
                                             
                                     
                                             <form  className="form-horizontal">
+                                            <div className="form-group">
+                                                    <label for="" className="col-md-5 control-label">Unit:</label>
+
+                                                    <div className="col-md-7">
+                                                    <h4><span>{product.unit_product}</span></h4>
+                                                    </div>  
+
+                                                </div>
                                                 <div className="form-group">
                                                     <label for="" className="col-md-5 control-label">Current price:</label>
 
@@ -87,7 +110,7 @@ function DetailProduct(props) {
                                                 <h2>Description</h2>
                                             </div>
                                             <div className="card-body">
-                                                <p className="product-description" >{product.description}.</p>
+                                                <p className="product-description" >{product.description_product}.</p>
                                             </div> 
                                         </div>
                                         
@@ -97,6 +120,7 @@ function DetailProduct(props) {
                                 
                             )
                             }
+
                       </div>
                     </div>
                     

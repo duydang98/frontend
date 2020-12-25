@@ -31,13 +31,13 @@ function TopMenu(props) {
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="index.html"><img src="images/logo2.png" alt="" /></a>
+                <a className="navbar-brand" href="/"><img src="images/logo2.png" alt="" /></a>
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
                   <li className="active"><a href="/">Home <span className="sr-only">(current)</span></a></li>
                   <li><Link to="/product">Shop</Link></li>
-                  <li><a href="blog.html">Blog</a></li>
+                  <li><Link to="/blog">Blog</Link></li>
                   <li><a href="blog-detail.html">Blog Post</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>

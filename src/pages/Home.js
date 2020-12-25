@@ -1,5 +1,4 @@
 import React from 'react';
-import Product from '../components/Product';
 import Silder from '../components/Silder'; 
 function Home(props) {
     return (
