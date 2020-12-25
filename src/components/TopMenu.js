@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
     Link
   } from "react-router-dom";
 function TopMenu(props) {
+    const cart = useSelector( state=> state.cart);
+    const {cartItem} = cart;
     return (
       <div id="header">
       <div className="top">
@@ -46,7 +49,7 @@ function TopMenu(props) {
                     <a  href="/" id="open-srch-form"> <img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/srch_qxbn9l.png" alt="srch" /></a>
                   </li>
                   <li><a href="/"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/pav_lqzte3.png" alt="pav" /><span>2</span></a></li>
-                  <li><Link to="/cart"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/bag_spvr5h.png" alt="bag" /><span>2</span></Link></li>
+                  <li><Link to="/cart"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/bag_spvr5h.png" alt="bag" /> {cartItem.length >0 &&  <span>{cartItem.length}</span>}</Link></li>
                   <li id="open-srch-form-mod">
                     <div>
                       <form className="side-search">

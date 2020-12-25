@@ -17,13 +17,16 @@ function DetailProduct(props) {
   
     },[dispatch,id_product]);
     const onAddToCart = () => {
-        // const item = {
-        //     id_product,
-        //     product_qty,
-        //     area_stock
-        // }
-        //console.log(item);
-        props.history.push(`/cart/${id_product}/${product_qty}/${area_stock}`);
+       
+        //props.history.push(`/cart/${id_product}/${product_qty}/${area_stock}`);
+        props.history.push({
+            pathname: '/cart',
+            state: { 
+                id_product,
+                area_stock,
+                product_qty
+             }
+          })
     }
     return (
         <div id="content">

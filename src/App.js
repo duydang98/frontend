@@ -24,7 +24,7 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/product/" exact component={Product}/>
         <Route path="/product/:id" exact component={DetailProduct}/>
-        <Route path="/cart/:id/:qty/:area" component={Cart}/>
+        <Route path="/cart" component={Cart}/>
         <Route path="/blog" exact component={Blog}/>
         <Footer/>
       </div>{/*jfkjspdfj */}

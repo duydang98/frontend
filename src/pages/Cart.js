@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addToCart } from '../actions/cartAction';
+import ProductCartItem from '../components/CartItem';
 
 function Cart(props) {
-    const id_product = props.match.params.id;
-    const id_area =  props.match.params.area;
-    const qty =  props.match.params.qty;
-    console.log(id_product);
-    console.log(qty);
-    console.log(id_area);
+    let id_product = "" ;
+    let id_area = "";
+    let qty=""
+    if(props.location.state){
+         id_product = parseInt( props.location.state.id_product);
+         id_area =  parseInt(props.location.state.area_stock);
+         qty = parseInt(props.location.state.product_qty);
+    }
+    const cart = useSelector( state=> state.cart);
+    const {cartItem} = cart;
+    const total = cartItem.reduce((x,y)=>{
+        return x + parseInt(y.price_product)*parseInt(y.qty);
+    },0);
+    let transpost_fee = 10;
+    if(total>300){
+        transpost_fee*=0.5;
+    }
+    if(total>500){
+        transpost_fee = 0;
+    }
+   const dispatch = useDispatch();
+    useEffect(()=>{
+            if(id_product){
+                   dispatch(addToCart(id_product,id_area,qty));
+            }
+    },[dispatch, id_product , id_area , qty]);
     
- 
+    const checkOutPage = () => {
+        props.history.push('/signin?redirect=shipping');
+      };
+
     return (
         <div id="content">
         <div className="newest">
@@ -27,7 +54,7 @@ function Cart(props) {
                 <div id="myTabContent" className="tab-content">
                   <div role="tabpanel" className="tab-pane fade in active" id="1" aria-labelledby="cat-1">
                         <div className="row clearfix">
-                            <div className="col-xs-8">
+                            <div className="col-xs-9">
                                 <div className="panel panel-info">
                                     <div className="panel-heading">
                                         <div className="panel-title">
@@ -47,52 +74,15 @@ function Cart(props) {
                                         </div>
                                     </div>
                                     <div className="panel-body">
-                                        <div className="row">
-                                            <div className="col-xs-2"><img className="img-responsive img-cart" src="http://res.cloudinary.com/dnnkamj1s/image/upload/v1598064772/Images/products/uxezdj0azlfqfsml9nrd.jpg" alt=""/>
-                                            </div>
-                                            <div className="col-xs-4">
-                                                <h4 className="product-name"><strong>Product name</strong></h4><h4><small>Product Unit</small></h4>
-                                            </div>
-                                            <div className="col-xs-6">
-                                                <div className="col-xs-6 text-right">
-                                                    <h6><strong>25.00 <span className="text-muted"> x</span></strong></h6>
-                                                </div>
-                                                <div className="col-xs-4">
-                                                    <input type="text" className="form-control input-sm" value="1"/>
-                                                </div>
-                                                <div className="col-xs-2">
-                                                    <button type="button" className="btn btn-link btn-xs">
-                                                        <span className="glyphicon glyphicon-trash"> </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-xs-2"><img className="img-responsive img-cart" src="http://res.cloudinary.com/dnnkamj1s/image/upload/v1598064772/Images/products/uxezdj0azlfqfsml9nrd.jpg" alt=""/>
-                                            </div>
-                                            <div className="col-xs-4">
-                                                <h4 className="product-name"><strong>Product name</strong></h4><h4><small>Product Unit</small></h4>
-                                            </div>
-                                            <div className="col-xs-6">
-                                                <div className="col-xs-6 text-right">
-                                                    <h6><strong>25.00 <span className="text-muted"> x</span></strong></h6>
-                                                </div>
-                                                <div className="col-xs-4">
-                                                    <input type="text" className="form-control input-sm" value="1"/>
-                                                </div>
-                                                <div className="col-xs-2">
-                                                    <button type="button" className="btn btn-link btn-xs">
-                                                        <span className="glyphicon glyphicon-trash"> </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {cartItem.map((item)=><ProductCartItem item={item} key={item.id_product}></ProductCartItem>)}
                                         
                                         
-                                        <div className="row">
+                                        
+                                        
+                                        {/* <div className="row">
                                             <div className="text-center">
                                                 <div className="col-xs-9">
-                                                    <h6 className="text-right">Added items?</h6>
+                                                    <h6 className="text-right">Added items ?</h6>
                                                 </div>
                                                 <div className="col-xs-3">
                                                     <button type="button" className="btn btn-default btn-sm btn-block">
@@ -100,15 +90,27 @@ function Cart(props) {
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
+                                        
                                     </div>
+                                   
+                                        <div className="row text-center">
+                                            <div className="col-xs-7">
+                                                
+                                            </div>
+                                            <div className="col-xs-4">
+                                                <h4 className="text-right">Transpost Fee <strong>${transpost_fee}</strong></h4>
+                                            </div>
+
+                                        </div>
+                                   
                                     <div className="panel-footer">
                                         <div className="row text-center">
                                             <div className="col-xs-9">
-                                                <h4 className="text-right">Total <strong>$50.00</strong></h4>
+                                                <h4 className="text-right">Total <strong>${total}</strong></h4>
                                             </div>
                                             <div className="col-xs-3">
-                                                <button type="button" className="btn btn-success btn-block">
+                                                <button type="button" className="btn btn-success btn-block"  onClick={checkOutPage} >
                                                     Checkout
                                                 </button>
                                             </div>
