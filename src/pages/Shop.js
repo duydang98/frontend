@@ -12,7 +12,7 @@ function Shop(props) {
 
     useEffect(()=>{
       dispatch(listProduct());
-    },[]);
+    },[dispatch]);
 
     return (
         <div id="content">

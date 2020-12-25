@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Product from './pages/Shop';
 import DetailProduct from './pages/DetailProduct';
+import Cart from './pages/Cart';
 import Blog from './pages/Blog';
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" exact component={Home} />
         <Route path="/product/" exact component={Product}/>
         <Route path="/product/:id" exact component={DetailProduct}/>
+        <Route path="/cart/:id/:qty/:area" component={Cart}/>
         <Route path="/blog" exact component={Blog}/>
         <Footer/>
       </div>{/*jfkjspdfj */}

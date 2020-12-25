@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailProduct } from '../actions/productAction';
@@ -6,14 +6,25 @@ import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
 function DetailProduct(props) {
     const dispatch = useDispatch();
+    const id_product = props.match.params.id;
     const productDetail = useSelector((state) => state.productDetail);
     const {loading,error,product} = productDetail;
-    console.log(product);
+    const [product_qty,setProduct_qty] = useState(1);
+    const [area_stock,setArea_stock] = useState(1);
 
     useEffect(()=>{
-      dispatch(detailProduct(props.match.params.id));
+      dispatch(detailProduct(id_product));
   
-    },[]);
+    },[dispatch,id_product]);
+    const onAddToCart = () => {
+        // const item = {
+        //     id_product,
+        //     product_qty,
+        //     area_stock
+        // }
+        //console.log(item);
+        props.history.push(`/cart/${id_product}/${product_qty}/${area_stock}`);
+    }
     return (
         <div id="content">
         <div className="newest">
@@ -81,26 +92,36 @@ function DetailProduct(props) {
                                                     <label for="" className="col-md-5 control-label">Quantity:</label>
 
                                                     <div className="col-md-7">
-                                                        <input name="product_qty" type="text"  className="form-control"/>
+                                                        <input name="product_qty"
+                                                         value={product_qty}
+                                                        onChange={(e)=>setProduct_qty(e.target.value)}
+                                                        type="number" min={1}  className="form-control"/>
                                                     </div>  
+
 
                                                 </div>
                                                 <div className="form-group">
                                                     <label for="" className="col-md-5 control-label">Area:</label>
 
                                                     <div className="col-md-7">
-                                                        <select class="form-control" >
-                                                            <option selected value="4" >Cần Thơ</option>
-                                                            <option value="1">TP HCM</option>
-                                                            <option value="2">Đà Lạt</option>
-                                                            <option value="3">Hậu Giang</option>
+                                                        <select class="form-control" 
+                                                        name="area_stock" 
+                                                        value={area_stock}
+                                                        onChange={(e)=>setArea_stock(e.target.value)}
+                                                        >
+                                                            <option value={1} >TP Hồ Chí Minh</option>
+                                                            <option value={2}>TP Cần Thơ</option>
+                                                            <option value={3}>Đà Lạt</option>
                                                         </select>
                                                     </div>  
 
                                                 </div>
                                             </form>
                                             <div className="action">
-                                                <button className="add-to-cart btn btn-default i fa fa-shopping-cart" type="button"> Add to cart</button>
+                                                
+                                                <button onClick={onAddToCart} className="add-to-cart btn btn-default i fa fa-shopping-cart" type="button"> Add to cart</button>
+                                                
+                                                
                                             </div>
                                     </div>
                                     
