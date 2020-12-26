@@ -15,6 +15,7 @@ html,body{
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     color:#2b2a2f;
+    
 }
 a{
     color:#66cef6;
@@ -62,7 +63,7 @@ blockquote{
 }
 
 .top{
-    background:#aaa6aa;
+    background:#a6aaa8;
 }
 .welcome{
     color: #1c1c1c;
@@ -4400,4 +4401,21 @@ blockquote{
 }
 .menu-acc {
     display: block;
+}
+.rster{
+    display: flex;
+}
+
+.form-register{
+    max-width: 530px;
+    padding: 0 15px 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+    background-color: #eee;
+}
+
+.form-register h2{
+    margin-left: 5em;
+    margin-bottom: 1em;
 }

@@ -8,6 +8,7 @@ import Product from './pages/Shop';
 import DetailProduct from './pages/DetailProduct';
 import Cart from './pages/Cart';
 import Signin from './pages/Signin';
+import Shipping from './pages/Shipping';
 import Blog from './pages/Blog';
 import {
   BrowserRouter as Router,
@@ -15,8 +16,10 @@ import {
   Route,
   //Link
 } from "react-router-dom";
+import Register from './pages/Register';
 
 function App() {
+  
   return (
     <Router>
       <div className="App">
@@ -27,6 +30,8 @@ function App() {
         <Route path="/product/:id" exact component={DetailProduct}/>
         <Route path="/cart" component={Cart}/>
         <Route path="/signin" component={Signin}/>
+        <Route path="/shipping" component={Shipping}/>
+        <Route path="/register" component={Register}/>
         <Route path="/blog" exact component={Blog}/>
         <Footer/>
       </div>{/*jfkjspdfj */}

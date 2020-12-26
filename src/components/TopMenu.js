@@ -13,6 +13,7 @@ function TopMenu(props) {
     const signoutHandler = ()=>{
         dispatch(signout());
     }
+ 
     return (
       <div id="header">
       <div className="top">
@@ -22,7 +23,6 @@ function TopMenu(props) {
             <li><a href="/"><i className="fa fa-envelope-square"></i><span>duydang363@gmail.com</span></a></li>
           </ul>
           <div className="top-control">
-            <a href="/">Track Order</a><span>•</span><a href="/">Register</a><span>•</span>
             {userInfo ? (
                 // <Link to="/signin">{userInfo.name_user}</Link>
                
@@ -32,17 +32,22 @@ function TopMenu(props) {
                 </button>
                 <div className="dropdown-menu">
                   <Link className="dropdown-item menu-acc" to="/">Action</Link>
-                  <Link className="dropdown-item menu-acc" to="/">Another action</Link>
+                  <Link className="dropdown-item menu-acc" to="/">Track Order</Link>
                   <Link className="dropdown-item menu-acc" to="#signout" onClick={signoutHandler}>Signout</Link>
                 </div>
               </div>
             ):(
               <div className="btn-group">
-                <Link to="/signin">
-                  <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Login
+                
+                  <button type="button" className="btn btn-secondary dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
                   </button>
-                </Link>
+                  <div className="dropdown-menu">
+                  <Link className="dropdown-item menu-acc"to="/signin">Signin</Link>
+                  <Link className="dropdown-item menu-acc" to="/register">Register</Link>
+                
+                  </div>
+                  
               </div>
             )}
             
@@ -76,16 +81,16 @@ function TopMenu(props) {
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li className="menu-search-form">
-                    <a  href="/" id="open-srch-form"> <img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/srch_qxbn9l.png" alt="srch" /></a>
+                  <Link to="#" id="open-srch-form"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/srch_qxbn9l.png" alt="srch" /></Link>
                   </li>
-                  <li><a href="/"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/pav_lqzte3.png" alt="pav" /><span>2</span></a></li>
+                  <li><Link to="/"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/pav_lqzte3.png" alt="pav" /><span>2</span></Link></li>
                   <li><Link to="/cart"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/bag_spvr5h.png" alt="bag" /> {cartItem.length >0 &&  <span>{cartItem.length}</span>}</Link></li>
                   <li id="open-srch-form-mod">
                     <div>
-                      <form className="side-search">
+                      <form className="side-search" >
                         <div className="input-group">
                           <input type="text" className="form-control search-wid" placeholder="Search Here" aria-describedby="basic-addon1" />
-                          <a href="/" className="input-group-addon btn-side-serach" id="basic-addon1"><i className="fa fa-search"></i></a>
+                          <Link to="/product" className="input-group-addon btn-side-serach" id="basic-addon1"><i className="fa fa-search"></i></Link>
                         </div>
                       </form>
                     </div>

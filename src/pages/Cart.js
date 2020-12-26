@@ -8,24 +8,31 @@ import ProductCartItem from '../components/CartItem';
 function Cart(props) {
     let id_product = "" ;
     let id_area = "";
-    let qty=""
+    let qty="";
+    let transpost_fee = 0;
     if(props.location.state){
          id_product = parseInt( props.location.state.id_product);
          id_area =  parseInt(props.location.state.area_stock);
          qty = parseInt(props.location.state.product_qty);
+        
     }
     const cart = useSelector( state=> state.cart);
     const {cartItem} = cart;
+    
     const total = cartItem.reduce((x,y)=>{
         return x + parseInt(y.price_product)*parseInt(y.qty);
     },0);
-    let transpost_fee = 10;
-    if(total>300){
-        transpost_fee*=0.5;
+    
+    if(cartItem.length>0){
+        transpost_fee = 10;
+        if(total>300){
+            transpost_fee*=0.5;
+        }
+        if(total>500){
+            transpost_fee = 0;
+        }
     }
-    if(total>500){
-        transpost_fee = 0;
-    }
+    
    const dispatch = useDispatch();
     useEffect(()=>{
             if(id_product){
@@ -78,7 +85,7 @@ function Cart(props) {
                                         
                                         
                                         
-                                        
+    
                                         {/* <div className="row">
                                             <div className="text-center">
                                                 <div className="col-xs-9">
