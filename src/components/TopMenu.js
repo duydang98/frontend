@@ -1,11 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {signout} from '../actions/userAction';
 import {
     Link
   } from "react-router-dom";
 function TopMenu(props) {
     const cart = useSelector( state=> state.cart);
     const {cartItem} = cart;
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
+    const dispatch = useDispatch();
+    const signoutHandler = ()=>{
+        dispatch(signout());
+    }
     return (
       <div id="header">
       <div className="top">
@@ -15,7 +22,30 @@ function TopMenu(props) {
             <li><a href="/"><i className="fa fa-envelope-square"></i><span>duydang363@gmail.com</span></a></li>
           </ul>
           <div className="top-control">
-            <a href="/">Track Order</a><span>•</span><a href="/">Register</a><span>•</span><a href="/">Login</a>
+            <a href="/">Track Order</a><span>•</span><a href="/">Register</a><span>•</span>
+            {userInfo ? (
+                // <Link to="/signin">{userInfo.name_user}</Link>
+               
+                <div className="btn-group">
+                <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {userInfo.name_user}
+                </button>
+                <div className="dropdown-menu">
+                  <Link className="dropdown-item menu-acc" to="/">Action</Link>
+                  <Link className="dropdown-item menu-acc" to="/">Another action</Link>
+                  <Link className="dropdown-item menu-acc" to="#signout" onClick={signoutHandler}>Signout</Link>
+                </div>
+              </div>
+            ):(
+              <div className="btn-group">
+                <Link to="/signin">
+                  <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login
+                  </button>
+                </Link>
+              </div>
+            )}
+            
           </div>
           <div className="clearfix"></div>
           <div className="top-offers show-mobile">

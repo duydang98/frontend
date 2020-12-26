@@ -58,7 +58,7 @@ function DetailProduct(props) {
                             (  
                               <div>
                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <img src={product.image} className="large"  width={500} alt={product.name} />
+                                        <img src={product.image} className="large img-responsive"  width={500} alt={product.name} />
                                     </div>
                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <h3 className="product-title"> {product.name_product}</h3>

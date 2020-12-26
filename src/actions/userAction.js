@@ -1,0 +1,27 @@
+import * as userConstants from '../constans/userConstants';
+import Axios from 'axios';
+
+export const signin = (email, password) => async (dispatch) => {
+    dispatch({ type: userConstants.USER_SIGNIN_REQUEST, payload: { email, password } });
+
+    try {
+      const { data } = await Axios.post('/user/login', { email, password });
+      dispatch({ type: userConstants.USER_SIGNIN_SUCCESS, payload: data });
+      localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+      dispatch({
+        type: userConstants.USER_SIGNIN_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+  export const signout = () => (dispatch) => {
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('cartItem');
+    dispatch({ type: userConstants.USER_SIGNOUT });
+    document.location.href = '/signin';
+  };
