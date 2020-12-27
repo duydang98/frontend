@@ -9,6 +9,9 @@ import DetailProduct from './pages/DetailProduct';
 import Cart from './pages/Cart';
 import Signin from './pages/Signin';
 import Shipping from './pages/Shipping';
+import Payment from './pages/Payment';
+import PlaceOrder from './pages/PlaceOrder';
+
 import Blog from './pages/Blog';
 import {
   BrowserRouter as Router,
@@ -31,6 +34,8 @@ function App() {
         <Route path="/cart" component={Cart}/>
         <Route path="/signin" component={Signin}/>
         <Route path="/shipping" component={Shipping}/>
+        <Route path="/payment" component={Payment}/>
+        <Route path="/order" component={PlaceOrder}/>
         <Route path="/register" component={Register}/>
         <Route path="/blog" exact component={Blog}/>
         <Footer/>

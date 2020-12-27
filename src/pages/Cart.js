@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../actions/cartAction';
 import ProductCartItem from '../components/CartItem';
 
 function Cart(props) {
-    let id_product = "" ;
-    let id_area = "";
-    let qty="";
-    let transpost_fee = 0;
-    if(props.location.state){
-         id_product = parseInt( props.location.state.id_product);
-         id_area =  parseInt(props.location.state.area_stock);
-         qty = parseInt(props.location.state.product_qty);
-        
-    }
+   
+     let transpost_fee = 0;
+    
     const cart = useSelector( state=> state.cart);
     const {cartItem} = cart;
     
     const total = cartItem.reduce((x,y)=>{
-        return x + parseInt(y.price_product)*parseInt(y.qty);
+        return x + parseInt(y.price_product)*parseInt(y.quantity_product);
     },0);
     
     if(cartItem.length>0){
@@ -33,12 +25,12 @@ function Cart(props) {
         }
     }
     
-   const dispatch = useDispatch();
-    useEffect(()=>{
-            if(id_product){
-                   dispatch(addToCart(id_product,id_area,qty));
-            }
-    },[dispatch, id_product , id_area , qty]);
+//    const dispatch = useDispatch();
+    // useEffect(()=>{
+    //         if(id_product){
+    //                dispatch(addToCart(id_product,id_area,qty));
+    //         }
+    // },[dispatch, id_product , id_area , qty]);
     
     const checkOutPage = () => {
         props.history.push('/signin?redirect=shipping');

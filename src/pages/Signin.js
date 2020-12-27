@@ -19,10 +19,14 @@ function Signin(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
+
   }
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && redirect !== '/') {
       props.history.push(redirect);
+    }
+    if(userInfo && redirect === '/' ){
+      document.location.href = redirect;
     }
   }, [props.history, redirect, userInfo]);
   return (

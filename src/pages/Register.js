@@ -69,14 +69,14 @@ function Register(props) {
                 <div className="form-group">
                     <label for="firstName" className="col-sm-3 control-label">Full Name</label>
                     <div className="col-sm-9">
-                        <input type="text" id="firstName" placeholder="Full Name" className="form-control" onChange={(e)=>setName(e.target.value)}  autofocus/>
+                        <input type="text" id="firstName" placeholder="Full Name" className="form-control" onChange={(e)=>setName(e.target.value)} required autofocus/>
                         <span className="help-block">Ex: Đặng Phúc Duy,...</span>
                     </div>
                 </div>
                 <div className="form-group">
                     <label for="birthDate" className="col-sm-3 control-label">Date of Birth</label>
                     <div className="col-sm-9">
-                        <input type="date" id="birthDate" onChange={(e)=>setBirthday(e.target.value)} className="form-control"/>
+                        <input type="date" id="birthDate" onChange={(e)=>setBirthday(e.target.value)} className="form-control" required/>
                     </div>
                 </div>
                 
@@ -86,12 +86,12 @@ function Register(props) {
                         <div className="row">
                             <div className="col-sm-4">
                                 <label className="radio-inline">
-                                    <input type="radio" id="femaleRadio" name="gender" onChange={(e)=>setSex(e.target.value)} value="Female"/>Female
+                                    <input type="radio" id="femaleRadio" name="gender" onChange={(e)=>setSex(e.target.value)} value="Female" required/>Female
                                 </label>
                             </div>
                             <div className="col-sm-4">
                                 <label className="radio-inline">
-                                    <input type="radio" id="maleRadio" name="gender" onChange={(e)=>setSex(e.target.value)} value="Male"/>Male
+                                    <input type="radio" id="maleRadio" name="gender" onChange={(e)=>setSex(e.target.value)} value="Male" required/>Male
                                 </label>
                             </div>
                             
@@ -101,25 +101,25 @@ function Register(props) {
                 <div className="form-group">
                     <label for="phone" className="col-sm-3 control-label">Phone</label>
                     <div className="col-sm-9">
-                        <input type="text" id="phone" placeholder="Phone" onChange={(e)=>setPhone(e.target.value)} className="form-control"/>
+                        <input type="text" id="phone" placeholder="Phone" onChange={(e)=>setPhone(e.target.value)} className="form-control" required/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label for="address" className="col-sm-3 control-label">Address</label>
                     <div className="col-sm-9">
-                        <input type="text" id="address" placeholder="Address" onChange={(e)=>setAddress(e.target.value)} className="form-control"/>
+                        <input type="text" id="address" placeholder="Address" onChange={(e)=>setAddress(e.target.value)} className="form-control" required/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label for="email" className="col-sm-3 control-label">Email</label>
                     <div className="col-sm-9">
-                        <input type="text" id="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} className="form-control"/>
+                        <input type="text" id="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} className="form-control" required/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label for="password" className="col-sm-3 control-label">Password</label>
                     <div className="col-sm-9">
-                        <input type="password" id="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} className="form-control"/>
+                        <input type="password" id="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} className="form-control" required/>
                     </div>
                 </div>
                 <div className="form-group">

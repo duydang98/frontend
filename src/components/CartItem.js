@@ -33,7 +33,7 @@ function CartItem(props) {
                     <h6><strong> {item.price_product} <span className="text-muted"> x</span></strong></h6>
                 </div>
                 <div className="col-xs-4">
-                    <input type="number" className="form-control input-sm" value={item.qty} min={1}
+                    <input type="number" className="form-control input-sm" value={item.quantity_product} min={1}
                     
                     onChange={(e) =>
                         dispatch(

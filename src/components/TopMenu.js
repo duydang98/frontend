@@ -103,7 +103,7 @@ function TopMenu(props) {
             <form className="side-search">
               <div className="input-group">
                 <input type="text" className="form-control search-wid" placeholder="Search Here" aria-describedby="basic-addon2" />
-                <a href="/" className="input-group-addon btn-side-serach" id="basic-addon2"><i className="fa fa-search"></i></a>
+                <Link to="/product" className="input-group-addon btn-side-serach" id="basic-addon2"><i className="fa fa-search"></i></Link>
               </div>
             </form>
           </div>

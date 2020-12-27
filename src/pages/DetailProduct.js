@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailProduct } from '../actions/productAction';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
+import { addToCart } from '../actions/cartAction';
 function DetailProduct(props) {
     const dispatch = useDispatch();
     const id_product = props.match.params.id;
@@ -16,17 +17,21 @@ function DetailProduct(props) {
       dispatch(detailProduct(id_product));
   
     },[dispatch,id_product]);
+
     const onAddToCart = () => {
-       
+        dispatch(addToCart(id_product,parseInt(area_stock),product_qty));
+        alert("Add to cart success");
+        props.history.push("/cart");
         //props.history.push(`/cart/${id_product}/${product_qty}/${area_stock}`);
-        props.history.push({
-            pathname: '/cart',
-            state: { 
-                id_product,
-                area_stock,
-                product_qty
-             }
-          })
+        // props.history.push({
+        //     pathname: '/cart',
+        //     state: { 
+        //         id_product,
+        //         area_stock,
+        //         product_qty
+        //      }
+        //   });
+
     }
     return (
         <div id="content">
