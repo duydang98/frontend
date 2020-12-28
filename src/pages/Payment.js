@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { savePaymentMethod } from '../actions/cartAction';
 import CheckOutStep from '../components/CheckOutStep';
@@ -7,14 +7,10 @@ function Payment(props) {
 
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    if(!userInfo){
-        props.history.push('/signin');
-    }
+    
     const cart = useSelector(state=> state.cart);
-    const {shippingAddress} = cart;
-    if(!shippingAddress){
-        props.history.push('/shipping');
-    }
+    const {cartItem,shippingAddress} = cart;
+   
 
     const [payment,setPayment] = useState('COD');
     const dispatch = useDispatch();
@@ -30,6 +26,21 @@ function Payment(props) {
         }
         
     }
+    useEffect(()=>{
+        if(!userInfo){
+            alert("Bạn chưa đăng nhập ");
+            props.history.push('/signin');
+        }
+        if(cartItem.length===0){
+            alert("Bạn chưa thêm sản phẩm vào giỏ hàng");
+            props.history.push('/product');
+        }
+        if(Object.keys(shippingAddress).length===0){
+            alert("Bạn chưa thêm địa chỉ giao hàng");
+            props.history.push('/shipping');
+        }
+       
+    },[props.history,userInfo,cartItem,shippingAddress])
     return (
         <div id="content">
         <div className="newest">

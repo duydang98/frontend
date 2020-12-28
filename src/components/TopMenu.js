@@ -1,14 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {signout} from '../actions/userAction';
+import classNames from 'classnames';
 import {
-    Link
+    Link, useLocation
   } from "react-router-dom";
 function TopMenu(props) {
     const cart = useSelector( state=> state.cart);
     const {cartItem} = cart;
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
+    const location = useLocation();
+    
     const dispatch = useDispatch();
     const signoutHandler = ()=>{
         dispatch(signout());
@@ -31,8 +34,8 @@ function TopMenu(props) {
                 {userInfo.name_user}
                 </button>
                 <div className="dropdown-menu">
-                  <Link className="dropdown-item menu-acc" to="/">Action</Link>
-                  <Link className="dropdown-item menu-acc" to="/">Track Order</Link>
+                  <Link className="dropdown-item menu-acc" to="/">My Profile</Link>
+                  <Link className="dropdown-item menu-acc" to="/my_order">My Order</Link>
                   <Link className="dropdown-item menu-acc" to="#signout" onClick={signoutHandler}>Signout</Link>
                 </div>
               </div>
@@ -94,9 +97,9 @@ function TopMenu(props) {
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
-                  <li className="active"><a href="/">Home <span className="sr-only">(current)</span></a></li>
-                  <li><Link to="/product">Shop</Link></li>
-                  <li><Link to="/blog">Blog</Link></li>
+                  <li  className={classNames({active: location.pathname ==='/'})}  ><a href="/">Home <span className="sr-only">(current)</span></a></li>
+                  <li  className={classNames({active: location.pathname ==='/product'})}><Link to="/product">Shop</Link></li>
+                  <li  className={classNames({active: location.pathname ==='/blog'})}><Link to="/blog">Blog</Link></li>
                   <li><a href="blog-detail.html">Blog Post</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -130,6 +133,39 @@ function TopMenu(props) {
           </div>
         </div>
       </div>
+      <div id="cat-nav">
+              <div className="container">
+                  <nav className="navbar navbar-default">
+                     
+                      <div className="navbar-header">
+                          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#cat-nav-mega">
+                              <span className="sr-only">Toggle navigation</span>
+                              <span className="icon-bar"></span>
+                              <span className="icon-bar"></span>
+                              <span className="icon-bar"></span>
+                          </button>
+                      </div>
+
+                     
+                      <div className="collapse navbar-collapse" id="cat-nav-mega">
+                          <ul className="nav navbar-nav">
+                              <li className="active" ><Link to="/product">ALL</Link></li>
+                              <li><Link to="/product">HOA SINH NHAT</Link></li>
+                              <li><Link to="/product">HOA TINH NHAN</Link></li>
+                              <li><Link to="/product">HOA TANG ME </Link></li>
+                              <li><Link to="/product">HOA CUOI </Link></li>
+                              <li><Link to="/product">HOA 20/11 </Link></li>
+                              <li><Link to="/product">HOA VIENG </Link></li>
+                              
+                              
+                          </ul>
+                           
+                      </div>
+                      
+                  </nav>
+              </div>
+              </div>                
+    
     </div> 
     );
 }

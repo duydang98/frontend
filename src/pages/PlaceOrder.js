@@ -9,6 +9,7 @@ function PlaceOrder(props) {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const cart = useSelector((state) => state.cart);
+    const {cartItem,shippingAddress} = cart;
     const orderCreate = useSelector(state => state.orderCreate);
     const {loading,error,order} = orderCreate;
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function PlaceOrder(props) {
         props.history.push('/payment');
     }
     let transpost_fee = 0;
-    const {cartItem} = cart;
+   
     
     const total = cartItem.reduce((x,y)=>{
         return x + parseInt(y.price_product)*parseInt(y.quantity_product);
@@ -44,13 +45,25 @@ function PlaceOrder(props) {
          
     }
     useEffect(()=>{
-        if(order){
-            props.history.push(`/order/${order.id_order}`);
-            dispatch({type: ORDER_CREATE_RESET});
-
+        if(!userInfo){
+            alert("Bạn chưa đăng nhập ");
+            props.history.push('/signin');
+        }
+        if(cartItem.length===0){
+            alert("Bạn chưa thêm sản phẩm vào giỏ hàng");
+            props.history.push('/product');
+        }
+        if(Object.keys(shippingAddress).length===0){
+            alert("Bạn chưa thêm địa chỉ giao hàng");
+            props.history.push('/shipping');
         }
 
-    },[dispatch,props.history,order])
+        if(order){
+            props.history.push(`/order_detail/${order.id_order}`);
+            dispatch({type: ORDER_CREATE_RESET});
+        }
+
+    },[dispatch,props.history,order,userInfo,cartItem,shippingAddress])
     return (
         <div id="content">
         <div className="newest">

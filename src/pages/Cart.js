@@ -40,13 +40,6 @@ function Cart(props) {
         <div id="content">
         <div className="newest">
           <div className="container">
-          <ol class="breadcrumb">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li><Link to="/product">Shop</Link> </li>
-                <li class="active">Cart</li>
-            </ol>
             <div className="newest-content">
               <div className="newest-tab"> 
                 

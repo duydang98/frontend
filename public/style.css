@@ -63,7 +63,7 @@ blockquote{
 }
 
 .top{
-    background:#a6aaa8;
+    background: #403e72;
 }
 .welcome{
     color: #1c1c1c;
@@ -85,14 +85,14 @@ blockquote{
 .top-support li{
     float:left;
     list-style:none;
-    color:rgb(51, 50, 50);;
+    color:#fff;
     font-size:13px;
 }
 .top-support li:first-child{
     margin-right:17px;
 }
 .top-support li a{
-    color:rgb(51, 50, 50);
+    color:#fff;
 }
 .top-support li a i{
     color:#2a2955;
@@ -4431,3 +4431,8 @@ blockquote{
     border-top-color: #f08000;
     color: #f08000;
   }
+
+.table-responsive{
+    max-width: auto;
+    max-height:550px;
+}

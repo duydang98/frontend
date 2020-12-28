@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailProduct } from '../actions/productAction';
 import MessageBox from '../components/MessageBox';
@@ -37,13 +36,7 @@ function DetailProduct(props) {
         <div id="content">
         <div className="newest">
           <div className="container">
-          <ol class="breadcrumb">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li><Link to="/product">Shop</Link> </li>
-                <li class="active">Detail Product</li>
-            </ol>
+
             <div className="newest-content">
               <div className="newest-tab"> 
                 

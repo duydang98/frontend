@@ -5,8 +5,8 @@ import CheckOutStep from '../components/CheckOutStep';
 function Shipping(props) {
 
     const cart = useSelector(state=> state.cart);
-    const {shippingAddress} = cart;
-
+    const {cartItem,shippingAddress} = cart;
+    
     const [name,setName] = useState(shippingAddress.name_recipient);
     const [phone,setPhone] = useState(shippingAddress.phone_recipient);
     const [address,setAddress] = useState(shippingAddress.address_recipient);
@@ -42,7 +42,12 @@ function Shipping(props) {
             alert("Bạn chưa đăng nhập ");
             props.history.push('/signin');
         }
-    },[props.history,userInfo])
+        if(cartItem.length===0){
+            alert("Bạn chưa thêm sản phẩm vào giỏ hàng");
+            props.history.push('/product');
+        }
+       
+    },[props.history,userInfo,cartItem])
     
 
     return (

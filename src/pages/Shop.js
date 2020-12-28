@@ -18,12 +18,7 @@ function Shop(props) {
         <div id="content">
         <div className="newest">
           <div className="container">
-          <ol class="breadcrumb">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li class="active">Shop</li>
-            </ol>
+          
             <div className="newest-content">
               <div className="newest-tab"> 
                 
