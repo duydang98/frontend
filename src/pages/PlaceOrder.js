@@ -1,11 +1,17 @@
-import axios from 'axios';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createOrder } from '../actions/orderAction';
 import CheckOutStep from '../components/CheckOutStep';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { ORDER_CREATE_RESET } from '../constans/orderConstants';
 function PlaceOrder(props) {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const cart = useSelector((state) => state.cart);
+    const orderCreate = useSelector(state => state.orderCreate);
+    const {loading,error,order} = orderCreate;
+    const dispatch = useDispatch();
     if (!cart.paymentMethod) {
         props.history.push('/payment');
     }
@@ -33,13 +39,18 @@ function PlaceOrder(props) {
             "payment_method": cart.paymentMethod,
             "order_items": cartItem
          };
+         dispatch(createOrder(data));
          
-         await axios.post('/order/add',data ,{
-            headers: {
-                'x-access-token': userInfo.token
-            }
-        });
+         
     }
+    useEffect(()=>{
+        if(order){
+            props.history.push(`/order/${order.id_order}`);
+            dispatch({type: ORDER_CREATE_RESET});
+
+        }
+
+    },[dispatch,props.history,order])
     return (
         <div id="content">
         <div className="newest">
@@ -50,7 +61,8 @@ function PlaceOrder(props) {
                 <div id="myTabContent" className="tab-content">
                   <div role="tabpanel" className="tab-pane fade in active" id="1" aria-labelledby="cat-1">
                       <div className="row clearfix">
-        
+                        {loading && <LoadingBox></LoadingBox>}
+                        {error && <MessageBox> {error}</MessageBox>}
                             
                             <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                                 

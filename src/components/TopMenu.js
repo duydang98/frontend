@@ -50,6 +50,27 @@ function TopMenu(props) {
                   
               </div>
             )}
+              {userInfo && (
+                  userInfo.isAdmin && 
+                    <span> </span>
+                  )}
+              {userInfo && (
+                  userInfo.isAdmin && 
+                  
+                  <div className="btn-group">
+                  <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                  </button>
+                  <div className="dropdown-menu">
+                    <Link className="dropdown-item menu-acc" to="/">Dashboad</Link>
+                    <Link className="dropdown-item menu-acc" to="/">Track Order</Link>
+                    <Link className="dropdown-item menu-acc" to="#signout" onClick={signoutHandler}>Signout</Link>
+                  </div>
+                </div>
+              )}
+              
+             
+             
             
           </div>
           <div className="clearfix"></div>

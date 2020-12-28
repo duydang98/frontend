@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../actions/cartAction';
 import CheckOutStep from '../components/CheckOutStep';
@@ -13,9 +13,8 @@ function Shipping(props) {
 
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    if(!userInfo){
-        props.history.push('/signin');
-    }
+
+    
     // const [paymethod,setPaymethod] = useState('');
     
     const dispatch = useDispatch();
@@ -38,6 +37,12 @@ function Shipping(props) {
         
         
     }
+    useEffect(()=>{
+        if(!userInfo){
+            alert("Bạn chưa đăng nhập ");
+            props.history.push('/signin');
+        }
+    },[props.history,userInfo])
     
 
     return (
