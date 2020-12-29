@@ -6,13 +6,22 @@ import {
     Link, useLocation
   } from "react-router-dom";
 function TopMenu(props) {
+
     const cart = useSelector( state=> state.cart);
     const {cartItem} = cart;
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
     const location = useLocation();
     const [keyword,setKeyword] = useState('');
+    
     const dispatch = useDispatch();
+    
+    const onSearch = (e)=>{
+        e.preventDefault();
+        document.location.href = `/product?search=${keyword}`;
+
+    }
+
     const signoutHandler = ()=>{
         dispatch(signout());
     }
@@ -62,12 +71,12 @@ function TopMenu(props) {
                   
                   <div className="btn-group">
                   <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin
+                    Dashboard
                   </button>
                   <div className="dropdown-menu">
-                    <Link className="dropdown-item menu-acc" to="/">Dashboad</Link>
-                    <Link className="dropdown-item menu-acc" to="/">Track Order</Link>
-                    <Link className="dropdown-item menu-acc" to="#signout" onClick={signoutHandler}>Signout</Link>
+                    <Link className="dropdown-item menu-acc" to="/dashboard">Dashboad</Link>
+                    <a className="dropdown-item menu-acc" href="/">My Website</a>
+                   
                   </div>
                 </div>
               )}
@@ -111,7 +120,7 @@ function TopMenu(props) {
                   <li><Link to="/cart"><img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1608820015/Images/bag_spvr5h.png" alt="bag" /> {cartItem.length >0 &&  <span>{cartItem.length}</span>}</Link></li>
                   <li id="open-srch-form-mod">
                     <div>
-                      <form className="side-search" >
+                      <form className="side-search" onSubmit={onSearch} >
                         <div className="input-group">
                           <input type="text" className="form-control search-wid"  onChange={e=>setKeyword(e.target.value)} placeholder="Search Here" aria-describedby="basic-addon1" />
                           <Link to={`/product?search=${keyword}`} className="input-group-addon btn-side-serach" id="basic-addon1"><i className="fa fa-search"></i></Link>
@@ -124,7 +133,7 @@ function TopMenu(props) {
             </nav>
           </div>
           <div className="srch-form">
-            <form className="side-search">
+            <form className="side-search" onSubmit={onSearch} >
               <div className="input-group">
                 <input type="text" className="form-control search-wid" onChange={e=>setKeyword(e.target.value)} placeholder="Search Here" aria-describedby="basic-addon2" />
                 <Link to={`/product?search=${keyword}`} className="input-group-addon btn-side-serach" id="basic-addon2"><i className="fa fa-search"></i></Link>

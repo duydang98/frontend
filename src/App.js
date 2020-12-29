@@ -14,13 +14,15 @@ import PlaceOrder from './pages/PlaceOrder';
 import OrderDetail from './pages/OrderDetail';
 import Order from './pages/Order';
 import Blog from './pages/Blog';
+import Register from './pages/Register';
+import Dashboard from './pages/Admin/Dashboard';
 import {
   BrowserRouter as Router,
   //Switch,
   Route,
   //Link
 } from "react-router-dom";
-import Register from './pages/Register';
+
 
 function App() {
   
@@ -30,6 +32,7 @@ function App() {
       <div id="wrapper" className="homepage-1">
         <Header/>
         <Route path="/" exact component={Home} />
+        <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/product/" exact component={Product}/>
         <Route path="/product/:id" exact component={DetailProduct}/>
         <Route path="/cart" exact component={Cart}/>
