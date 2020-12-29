@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {signout} from '../actions/userAction';
 import classNames from 'classnames';
@@ -11,7 +11,7 @@ function TopMenu(props) {
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
     const location = useLocation();
-    
+    const [keyword,setKeyword] = useState('');
     const dispatch = useDispatch();
     const signoutHandler = ()=>{
         dispatch(signout());
@@ -113,8 +113,8 @@ function TopMenu(props) {
                     <div>
                       <form className="side-search" >
                         <div className="input-group">
-                          <input type="text" className="form-control search-wid" placeholder="Search Here" aria-describedby="basic-addon1" />
-                          <Link to="/product" className="input-group-addon btn-side-serach" id="basic-addon1"><i className="fa fa-search"></i></Link>
+                          <input type="text" className="form-control search-wid"  onChange={e=>setKeyword(e.target.value)} placeholder="Search Here" aria-describedby="basic-addon1" />
+                          <Link to={`/product?search=${keyword}`} className="input-group-addon btn-side-serach" id="basic-addon1"><i className="fa fa-search"></i></Link>
                         </div>
                       </form>
                     </div>
@@ -126,8 +126,8 @@ function TopMenu(props) {
           <div className="srch-form">
             <form className="side-search">
               <div className="input-group">
-                <input type="text" className="form-control search-wid" placeholder="Search Here" aria-describedby="basic-addon2" />
-                <Link to="/product" className="input-group-addon btn-side-serach" id="basic-addon2"><i className="fa fa-search"></i></Link>
+                <input type="text" className="form-control search-wid" onChange={e=>setKeyword(e.target.value)} placeholder="Search Here" aria-describedby="basic-addon2" />
+                <Link to={`/product?search=${keyword}`} className="input-group-addon btn-side-serach" id="basic-addon2"><i className="fa fa-search"></i></Link>
               </div>
             </form>
           </div>
