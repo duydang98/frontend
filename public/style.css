@@ -4436,3 +4436,29 @@ blockquote{
     max-width: auto;
     max-height:550px;
 }
+.title-comment {
+    font-size: 14px;
+    font-weight:bold;
+}
+.komen {
+    font-size:14px;
+    max-width: 300px;
+}
+.geser {
+    margin-left:55px;
+    margin-top:5px;
+}
+
+.cmt-row{
+    text-align: left;
+}
+
+.input-reply{
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.input-new-comment{
+    max-width: 800px;
+   
+}

@@ -11,12 +11,15 @@ function DetailProduct(props) {
     const {loading,error,product} = productDetail;
     const [product_qty,setProduct_qty] = useState(1);
     const [area_stock,setArea_stock] = useState(1);
-
+    const [isreply,setIsreply] = useState(false);
     useEffect(()=>{
       dispatch(detailProduct(id_product));
   
     },[dispatch,id_product]);
-
+    const onIsReply = ()=>{
+        setIsreply(!isreply);
+    }
+    console.log(isreply);
     const onAddToCart = () => {
         dispatch(addToCart(id_product,parseInt(area_stock),product_qty));
         alert("Add to cart success");
@@ -44,7 +47,7 @@ function DetailProduct(props) {
                   <div role="tabpanel" className="tab-pane fade in active" id="1" aria-labelledby="cat-1">
                   <div className="card">
 			        
-                      <div className="row clearfix">
+                      
                           {
                               loading && (<LoadingBox></LoadingBox>) 
                           }
@@ -55,6 +58,7 @@ function DetailProduct(props) {
                             {product && 
                             (  
                               <div>
+                                  <div className="row clearfix">
                                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                         <img src={product.image} className="large img-responsive"  width={500} alt={product.name} />
                                     </div>
@@ -138,12 +142,70 @@ function DetailProduct(props) {
                                         
                                     </div>
                                     
+                                    </div>
+                                    <div className="row cmt-row">
+                                        <h3>Comment</h3>
+                                        <div>
+                                            <form className="side-search">
+                                                
+                                                    <div className="input-group input-new-comment" >
+                                                        <input id="myMessage" type="text" className="form-control input-sm chat_input" name="msg" placeholder="Nhập vào đây" />
+                                                        <span className="input-group-btn">
+                                                            <button  id="sendbutton" className="btn btn-primary btn-sm" name="button"><i className="fa fa-send"> Send</i></button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                        </div>  
+                                        <div className="media">
+                                            <div className="media-left">
+                                            <img src="http://fakeimg.pl/50x50" alt="" className="media-object"/>
+                                            </div>
+                                            <div className="media-body">
+                                            <h4 className="media-heading title-coment">Fahmi Arif</h4>
+                                            <p className="komen">
+                                                kalo bisa ya ndak usah gan biar cepet
+                                                
+                                            </p>
+                                            <button onClick={onIsReply}  className="btn btn-primary" >Reply</button>
+                                                {isreply && (
+                                                    <form className="side-search">
+                                                    <div className="input-group input-reply">
+                                                        <input id="myMessage" type="text" className="form-control input-sm chat_input " name="msg" placeholder="Nhập vào đây" />
+                                                        <span className="input-group-btn">
+                                                            <button  id="sendbutton" className="btn btn-primary btn-sm" name="button"><i className="fa fa-send"></i></button>
+                                                        </span>
+                                                        </div>
+                                                </form>
+                                                )}
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div className="geser">
+                                        <div className="media">
+                                            <div className="media-left">
+                                            <img src="http://fakeimg.pl/50x50" alt="" className="media-object" />
+                                            </div>
+                                            <div className="media-body">
+                                            <h4 className="media-heading title-coment">Fahmi Arif</h4>
+                                            <p className="komen">
+                                                kalo bisa ya ndak usah gan biar cepet
+                                                
+                                            </p>
+                                           
+                                            </div>
+                                        </div>
+                                        </div>
+
+    
+                                    </div>
+
                                </div>
                                 
                             )
                             }
 
-                      </div>
+                     
                     </div>
                     
                             
