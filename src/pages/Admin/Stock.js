@@ -22,7 +22,9 @@ function Stock(props) {
 
     }
     const onISEdit = (stock)=>{
-        setIsAdd(!isAdd);
+        if(!isAdd){
+            setIsAdd(!isAdd);
+        }
         setIsEdit(true);
         setIdproduct(stock.id_product);
         setIdarea(stock.id_area);

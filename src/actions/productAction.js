@@ -128,4 +128,18 @@ export const deleteProduct = (id_product) => async (dispatch,getState) =>{
             : error.message
         });
     }
-}
+};
+
+export const newProduct = (keyword) => async (dispatch) =>{
+    dispatch({
+        type: productConstans.PRODUCT_NEW_REQUEST
+    });
+    try {
+
+        const {data} = await axios.get('/product/new');
+        
+        dispatch({type: productConstans.PRODUCT_NEW_SUCCESS, payload: data});
+    } catch (error) {
+        dispatch({type: productConstans.PRODUCT_NEW_FAIL, payload: error.message});
+    }
+};

@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { newProduct } from '../actions/productAction';
+import Product from '../components/Product';
 import Silder from '../components/Silder'; 
 function Home(props) {
+  const productNew = useSelector(state=>state.productNew);
+  const {products} = productNew;
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(newProduct());
+  },[dispatch])
     return (
         <div>
         <Silder/>
@@ -17,7 +27,11 @@ function Home(props) {
                 <div id="myTabContent" className="tab-content">
                   <div role="tabpanel" className="tab-pane fade in active" id="1" aria-labelledby="cat-1">
                       <div className="row clearfix">
-                          
+                          {products && (
+                            products.map(product=>(
+                              <Product product={product} />
+                            ))
+                          )}
                      
                       </div>
                   </div>

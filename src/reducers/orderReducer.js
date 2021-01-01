@@ -40,4 +40,32 @@ export const orderCreateReducer = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
+
+
+export const orderAllReducer = (state ={orders: []},action) =>{
+  switch (action.type) {
+    case orderConstants.ORDER_ALL_REQUEST:
+      return  { loading: true };
+    case orderConstants.ORDER_ALL_SUCCESS:
+      return { loading: false, orders: action.payload };
+    case orderConstants.ORDER_ALL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const orderUpdateReducer = (state ={order: {}},action) =>{
+  switch (action.type) {
+    case orderConstants.ORDER_UPDATE_REQUEST:
+      return  { loading: true };
+    case orderConstants.ORDER_UPDATE_SUCCESS:
+      return { loading: false, order: action.payload };
+    case orderConstants.ORDER_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+

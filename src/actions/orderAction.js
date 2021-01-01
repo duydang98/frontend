@@ -73,3 +73,51 @@ export const createOrder = (order) => async (dispatch, getState) => {
     });
 }
 }
+
+export const allOrder = () => async (dispatch, getState) => {
+  dispatch({ type: orderConstants.ORDER_ALL_REQUEST});
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+      const { data } = await axios.get('/order/admin',{
+          headers: {
+              'x-access-token': userInfo.token
+          }
+      });
+    dispatch({ type: orderConstants.ORDER_ALL_SUCCESS, payload: data});
+    
+  } catch (error) {
+    dispatch({
+      type: orderConstants.ORDER_ALL_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updateOrder = (id_order,status) => async (dispatch, getState) => {
+  dispatch({ type: orderConstants.ORDER_UPDATE_REQUEST});
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+      const { data } = await axios.put(`/order/admin/update/${id_order}`,status,{
+          headers: {
+              'x-access-token': userInfo.token
+          }
+      });
+    dispatch({ type: orderConstants.ORDER_UPDATE_SUCCESS, payload: data});
+    
+  } catch (error) {
+    dispatch({
+      type: orderConstants.ORDER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

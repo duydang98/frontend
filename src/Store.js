@@ -2,8 +2,8 @@ import {applyMiddleware, compose ,combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducer';
 import { commentAddReducer, commentListReducer, commentReplyReducer} from './reducers/commentReducer';
-import { orderCreateReducer, orderDetailReducer, orderListReducer } from './reducers/orderReducer';
-import { productAddReducer, productDeleteReducer, productDetailReducer, productListReducer, productUpdateReducer } from './reducers/productReducer';
+import { orderAllReducer, orderCreateReducer, orderDetailReducer, orderListReducer, orderUpdateReducer } from './reducers/orderReducer';
+import { productAddReducer, productDeleteReducer, productDetailReducer, productListReducer, productNewReducer, productUpdateReducer } from './reducers/productReducer';
 import { stockAddReducer, stockDeleteReducer, stockListReducer, stockUpdateReducer } from './reducers/stockReducer';
 import { userRegisterReducer, userSigninReducer } from './reducers/userReducer';
 
@@ -40,6 +40,9 @@ const reducer = combineReducers({
     stockAdd: stockAddReducer,
     stockUpdate: stockUpdateReducer,
     stockDelete: stockDeleteReducer,
+    orderAll: orderAllReducer,
+    orderUpdate: orderUpdateReducer,
+    productNew: productNewReducer,
 
 })
 

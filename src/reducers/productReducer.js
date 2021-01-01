@@ -68,4 +68,18 @@ export const productDeleteReducer = (state={product: {},loading: true}, action)=
         default:
             return state;
     }
-}
+};
+
+export const productNewReducer = (state={products: [],loading: true}, action)=>{
+
+    switch (action.type) {
+        case productConstans.PRODUCT_NEW_REQUEST:
+            return{ loading: true};
+        case productConstans.PRODUCT_NEW_SUCCESS:
+            return {loading: false , products: action.payload};
+        case productConstans.PRODUCT_NEW_FAIL:
+            return {loading: false , error: action.payload};
+        default:
+            return state;
+    }
+};
