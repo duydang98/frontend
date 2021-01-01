@@ -27,3 +27,45 @@ export const productDetailReducer = (state={product: {},loading: true}, action)=
             return state;
     }
 }
+
+export const productAddReducer = (state={product: {},loading: true}, action)=>{
+    
+    switch (action.type) {
+        case productConstans.PRODUCT_UPDATE_REQUEST:
+            return{ loading: true};
+        case productConstans.PRODUCT_UPDATE_SUCCESS:
+            return {loading: false , product: action.payload};
+        case productConstans.PRODUCT_UPDATE_FAIL:
+            return {loading: false , error: action.payload};
+        default:
+            return state;
+    }
+}
+
+export const productUpdateReducer = (state={product: {},loading: true}, action)=>{
+    
+    switch (action.type) {
+        case productConstans.PRODUCT_ADD_REQUEST:
+            return{ loading: true};
+        case productConstans.PRODUCT_ADD_SUCCESS:
+            return {loading: false , product: action.payload};
+        case productConstans.PRODUCT_ADD_FAIL:
+            return {loading: false , error: action.payload};
+        default:
+            return state;
+    }
+}
+
+export const productDeleteReducer = (state={product: {},loading: true}, action)=>{
+    
+    switch (action.type) {
+        case productConstans.PRODUCT_DELETE_REQUEST:
+            return{ loading: true};
+        case productConstans.PRODUCT_DELETE_SUCCESS:
+            return {loading: false , product: action.payload};
+        case productConstans.PRODUCT_DELETE_FAIL:
+            return {loading: false , error: action.payload};
+        default:
+            return state;
+    }
+}

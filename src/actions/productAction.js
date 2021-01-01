@@ -64,4 +64,68 @@ export const detailProduct = (id_product) => async (dispatch) =>{
         }
 }
 
+export const addProduct = (product) => async (dispatch,getState) =>{
+    dispatch({
+        type: productConstans.PRODUCT_ADD_REQUEST
+    });
+    try {
+        const {
+            userSignin: { userInfo },
+          } = getState();
+        const {data} = await axios.post('/admin/product/add',product,{
+            headers: {
+                'x-access-token': userInfo.token}
+            });
+        dispatch({type: productConstans.PRODUCT_ADD_SUCCESS, payload: data});
+    } catch (error) {
+        dispatch({type: productConstans.PRODUCT_ADD_FAIL, 
+            payload: error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        });
+    }
+}
 
+export const updateProduct = (id,product) => async (dispatch,getState) =>{
+    dispatch({
+        type: productConstans.PRODUCT_UPDATE_REQUEST
+    });
+    try {
+        const {
+            userSignin: { userInfo },
+          } = getState();
+        const {data} = await axios.put(`/admin/product/update/${id}`,product,{
+            headers: {
+                'x-access-token': userInfo.token}
+            });
+        dispatch({type: productConstans.PRODUCT_UPDATE_SUCCESS, payload: data});
+    } catch (error) {
+        dispatch({type: productConstans.PRODUCT_UPDATE_FAIL, 
+            payload: error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        });
+    }
+}
+
+export const deleteProduct = (id_product) => async (dispatch,getState) =>{
+    dispatch({
+        type: productConstans.PRODUCT_DELETE_REQUEST
+    });
+    try {
+        const {
+            userSignin: { userInfo },
+          } = getState();
+        const {data} = await axios.delete(`/admin/product/delete/${id_product}`,{
+            headers: {
+                'x-access-token': userInfo.token}
+            });
+        dispatch({type: productConstans.PRODUCT_DELETE_SUCCESS, payload: data});
+    } catch (error) {
+        dispatch({type: productConstans.PRODUCT_DELETE_FAIL, 
+            payload: error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        });
+    }
+}

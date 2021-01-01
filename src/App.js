@@ -16,6 +16,10 @@ import Order from './pages/Order';
 import Blog from './pages/Blog';
 import Register from './pages/Register';
 import ProductAdmin from './pages/Admin/Product';
+import CategoryAdmin from './pages/Admin/Category';
+import OrderAdmin from "./pages/Admin/Order";
+import StockAdmin from './pages/Admin/Stock';
+
 import {
   BrowserRouter as Router,
   //Switch,
@@ -33,6 +37,9 @@ function App() {
         <Header/>
         <Route path="/" exact component={Home} />
         <Route path="/adminproduct" exact component={ProductAdmin} />
+        <Route path="/admincategory" exact component={CategoryAdmin} />
+        <Route path="/adminstock" exact component={StockAdmin} />
+        <Route path="/adminorder" exact component={OrderAdmin} />
         <Route path="/product/" exact component={Product}/>
         <Route path="/product/:id" exact component={DetailProduct}/>
         <Route path="/cart" exact component={Cart}/>

@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducer';
 import { commentAddReducer, commentListReducer, commentReplyReducer} from './reducers/commentReducer';
 import { orderCreateReducer, orderDetailReducer, orderListReducer } from './reducers/orderReducer';
-import { productDetailReducer, productListReducer } from './reducers/productReducer';
+import { productAddReducer, productDeleteReducer, productDetailReducer, productListReducer, productUpdateReducer } from './reducers/productReducer';
+import { stockAddReducer, stockDeleteReducer, stockListReducer, stockUpdateReducer } from './reducers/stockReducer';
 import { userRegisterReducer, userSigninReducer } from './reducers/userReducer';
 
 const initialState = {
@@ -32,6 +33,13 @@ const reducer = combineReducers({
     commentList: commentListReducer,
     commentReply: commentReplyReducer,
     commentAdd: commentAddReducer,
+    productAdd: productAddReducer,
+    productUpdate: productUpdateReducer,
+    productDelete: productDeleteReducer,
+    stockList: stockListReducer,
+    stockAdd: stockAddReducer,
+    stockUpdate: stockUpdateReducer,
+    stockDelete: stockDeleteReducer,
 
 })
 
