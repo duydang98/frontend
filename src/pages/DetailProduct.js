@@ -3,27 +3,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailProduct } from '../actions/productAction';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
+import Comment from '../components/Comment';
 import { addToCart } from '../actions/cartAction';
+import { addComment, listComment } from '../actions/commentAction';
 function DetailProduct(props) {
     const dispatch = useDispatch();
     const id_product = props.match.params.id;
     const productDetail = useSelector((state) => state.productDetail);
     const {loading,error,product} = productDetail;
+    const commentList = useSelector(state=> state.commentList);
+    const {comments} = commentList;
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
     const [product_qty,setProduct_qty] = useState(1);
     const [area_stock,setArea_stock] = useState(1);
-    const [isreply,setIsreply] = useState(false);
+    const [newcomment,setNewcomment] = useState('');
     useEffect(()=>{
       dispatch(detailProduct(id_product));
+      dispatch(listComment(id_product));
   
     },[dispatch,id_product]);
-    const onIsReply = ()=>{
-        setIsreply(!isreply);
-    }
-    console.log(isreply);
+    
+
     const onAddToCart = () => {
         dispatch(addToCart(id_product,parseInt(area_stock),product_qty));
         alert("Add to cart success");
         props.history.push("/cart");
+
         //props.history.push(`/cart/${id_product}/${product_qty}/${area_stock}`);
         // props.history.push({
         //     pathname: '/cart',
@@ -35,6 +41,25 @@ function DetailProduct(props) {
         //   });
 
     }
+    
+    const onAddComment = ()=>{
+        if(!userInfo){
+            alert("You are not logged in");
+        }else{
+            if(newcomment){
+                dispatch(addComment({
+                    "id_product": id_product,
+                    "content_comment": newcomment
+                }));
+            }else{
+                alert("You have not entered comments");
+            }
+        }
+       
+        
+        props.history.push(`/product/${id_product}`);
+    }
+    
     return (
         <div id="content">
         <div className="newest">
@@ -149,52 +174,19 @@ function DetailProduct(props) {
                                             <form className="side-search">
                                                 
                                                     <div className="input-group input-new-comment" >
-                                                        <input id="myMessage" type="text" className="form-control input-sm chat_input" name="msg" placeholder="Nhập vào đây" />
+                                                        <input id="myMessage" type="text" className="form-control input-sm chat_input" onChange={e=>setNewcomment(e.target.value)} name="msg" placeholder="Nhập vào đây" />
                                                         <span className="input-group-btn">
-                                                            <button  id="sendbutton" className="btn btn-primary btn-sm" name="button"><i className="fa fa-send"> Send</i></button>
+                                                            <button  id="sendbutton" onClick={onAddComment} className="btn btn-primary btn-sm" name="button"><i className="fa fa-send"> Send</i></button>
                                                         </span>
                                                     </div>
                                                 </form>
-                                        </div>  
-                                        <div className="media">
-                                            <div className="media-left">
-                                            <img src="http://fakeimg.pl/50x50" alt="" className="media-object"/>
-                                            </div>
-                                            <div className="media-body">
-                                            <h4 className="media-heading title-coment">Fahmi Arif</h4>
-                                            <p className="komen">
-                                                kalo bisa ya ndak usah gan biar cepet
-                                                
-                                            </p>
-                                            <button onClick={onIsReply}  className="btn btn-primary" >Reply</button>
-                                                {isreply && (
-                                                    <form className="side-search">
-                                                    <div className="input-group input-reply">
-                                                        <input id="myMessage" type="text" className="form-control input-sm chat_input " name="msg" placeholder="Nhập vào đây" />
-                                                        <span className="input-group-btn">
-                                                            <button  id="sendbutton" className="btn btn-primary btn-sm" name="button"><i className="fa fa-send"></i></button>
-                                                        </span>
-                                                        </div>
-                                                </form>
-                                                )}
-                                                
-                                            </div>
                                         </div>
-
-                                        <div className="geser">
-                                        <div className="media">
-                                            <div className="media-left">
-                                            <img src="http://fakeimg.pl/50x50" alt="" className="media-object" />
-                                            </div>
-                                            <div className="media-body">
-                                            <h4 className="media-heading title-coment">Fahmi Arif</h4>
-                                            <p className="komen">
-                                                kalo bisa ya ndak usah gan biar cepet
-                                                
-                                            </p>
-                                           
-                                            </div>
-                                        </div>
+                                        <div  className="comment-content">
+                                        {comments && (
+                                           comments.map(comment=>(
+                                               <Comment comment={comment} key={comment.id_comment}  />
+                                           ))
+                                        )}
                                         </div>
 
     

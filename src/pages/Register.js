@@ -40,7 +40,12 @@ function Register(props) {
             data.append("address_user",address);
             data.append("email",email);
             data.append("password",password);
-            data.append("avatar_user",avatar);
+            if(avatar){
+                data.append("avatar_user",avatar);
+            }else{
+                data.append("avatar_user","https://res.cloudinary.com/dnnkamj1s/image/upload/v1609466454/Images/Users/t%E1%BA%A3i_xu%E1%BB%91ng_zejglh.png");
+            }
+            
 
             dispatch(register(data));
     

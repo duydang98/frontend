@@ -74,7 +74,7 @@ function TopMenu(props) {
                     Dashboard
                   </button>
                   <div className="dropdown-menu">
-                    <Link className="dropdown-item menu-acc" to="/dashboard">Dashboad</Link>
+                    <Link className="dropdown-item menu-acc" to="/adminproduct">Product</Link>
                     <a className="dropdown-item menu-acc" href="/">My Website</a>
                    
                   </div>

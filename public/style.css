@@ -4441,8 +4441,10 @@ blockquote{
     font-weight:bold;
 }
 .komen {
-    font-size:14px;
+    font-size:18px;
     max-width: 300px;
+    padding: 10px;
+    background-color: rgb(230, 228, 228);
 }
 .geser {
     margin-left:55px;
@@ -4459,6 +4461,30 @@ blockquote{
 }
 
 .input-new-comment{
-    max-width: 800px;
+    max-width: 600px;
    
 }
+
+.media {
+    margin-bottom: 20px;
+}
+.view-reply:hover{
+    text-decoration: none;
+    color: blue;
+}
+
+.view-reply{
+    margin-left: 10px;
+    color: cornflowerblue;
+}
+
+.img-comment{
+    width: 50px;
+    height: 50px;
+}
+
+.comment-content{
+    overflow: scroll;
+    height: 500px;
+}
+
