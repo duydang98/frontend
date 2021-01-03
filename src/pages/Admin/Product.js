@@ -52,7 +52,8 @@ function Product(props) {
         }else{
             dispatch(updateProduct(idupdate,data));
         }
-        
+        alert("Save success !");
+        setKeyword('');
         document.location.href ='/adminproduct';
         
     }

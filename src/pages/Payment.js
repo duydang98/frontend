@@ -19,11 +19,9 @@ function Payment(props) {
         e.preventDefault();
         dispatch(savePaymentMethod(payment));
 
-        if(payment==="COD"){
-            props.history.push('/order?pm=COD');
-        }else{
-            props.history.push('/order');
-        }
+       
+        props.history.push('/order');
+        
         
     }
     useEffect(()=>{
@@ -76,7 +74,7 @@ function Payment(props) {
                                             </label>
                                         </div>
                                     </div>
-                                    <div className="row">
+                                    {/* <div className="row">
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <label className="radio-inline">
                                                 <input type="radio" id="paypal" name="payment" onChange={(e)=>setPayment(e.target.value)}  value="paypal"/>Paypal
@@ -84,7 +82,7 @@ function Payment(props) {
                                         </div>
                                     
                     
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div> 
                             

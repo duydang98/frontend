@@ -5,6 +5,7 @@ import CheckOutStep from '../components/CheckOutStep';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { ORDER_CREATE_RESET } from '../constans/orderConstants';
+import StripeCheckout from 'react-stripe-checkout';
 function PlaceOrder(props) {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
@@ -40,9 +41,21 @@ function PlaceOrder(props) {
             "payment_method": cart.paymentMethod,
             "order_items": cartItem
          };
-         dispatch(createOrder(data));
-         
-         
+         dispatch(createOrder(data));   
+    }
+    const onPayStripe = token =>{
+        const data = {
+            "name_recipient": cart.shippingAddress.name_recipient,
+            "phone_recipient": cart.shippingAddress.phone_recipient,
+            "address_recipient": cart.shippingAddress.address_recipient,
+            "payment_method": cart.paymentMethod,
+            "order_items": cartItem,
+            "source_id": token.id,
+            "source_email": token.email
+         };
+
+         console.log(data);
+         dispatch(createOrder(data)); 
     }
     useEffect(()=>{
         if(!userInfo){
@@ -141,7 +154,17 @@ function PlaceOrder(props) {
                                                 <strong>Shipping:</strong> {transpost_fee}$ <br/>
                                                 <strong>Total: </strong> {total+ transpost_fee}$<br/>
                                             </p>
-                                            <button onClick={onAddOrder} class="btn btn-primary">Place Order</button>
+                                            {cart.paymentMethod === "COD" && ( <button onClick={onAddOrder} class="btn btn-primary">Place Order</button>) }
+                                            {cart.paymentMethod==="stripe" && (
+                                                <StripeCheckout
+                                                token={onPayStripe}
+                                                stripeKey="pk_test_51H5jvdJeia62LdkXSaegpNcFg8RiHPsE47JnELiFKK2FxmnykwjbpZiQzjIkBzk4ZzwdYolDzinhzj5XiD4A3AQz000YG75QaH"
+                                                name="Buy React"
+                                                amount={total*100}
+                                                >
+                                                     <button class="btn btn-primary"> <i className="fa fa-cc-stripe"></i> Place Order  {total+ transpost_fee}$  </button>
+                                                </StripeCheckout>
+                                            )}
                                             </div>
                                     </div>
                             </div>
