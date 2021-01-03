@@ -63,15 +63,19 @@ function Payment(props) {
                                         
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <label className="radio-inline">
-                                                <input type="radio" id="COD" name="payment" onChange={(e)=>setPayment(e.target.value)} checked value="COD"/>COD
+                                                <input type="radio" id="COD" name="payment" onChange={(e)=>setPayment(e.target.value)} checked value="COD"/>
+                                                COD(Cash On Delivery)
                                             </label>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                             <label className="radio-inline">
-                                                <input type="radio" id="stripe" name="payment" onChange={(e)=>setPayment(e.target.value)}  value="stripe"/>Stripe
+                                                
+                                                <input type="radio" id="stripe" name="payment" onChange={(e)=>setPayment(e.target.value)}  value="stripe"/>
+                                                 <img src="https://res.cloudinary.com/dnnkamj1s/image/upload/v1609656921/Images/stripe_fzy9bl.png" className="img-payment" alt="" /> 
                                             </label>
+                                            
                                         </div>
                                     </div>
                                     {/* <div className="row">

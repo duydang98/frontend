@@ -69,3 +69,15 @@ export const orderUpdateReducer = (state ={order: {}},action) =>{
   }
 };
 
+export const orderRefundReducer = (state ={order: {}},action) =>{
+  switch (action.type) {
+    case orderConstants.ORDER_REFUND_REQUEST:
+      return  { loading: true };
+    case orderConstants.ORDER_REFUND_SUCCESS:
+      return { loading: false, order: action.payload };
+    case orderConstants.ORDER_REFUND_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

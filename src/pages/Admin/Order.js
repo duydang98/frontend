@@ -88,9 +88,12 @@ function Order(props) {
                                            <th className="text-center">NAME</th>
                                            <th className="text-center">PHONE</th>
                                            <th className="text-center">ADDRESS</th>
+                                           <th className="text-center">PAYMENT METHOD</th>
+                                           <th className="text-center">PAYMENT_STATUS</th>
+                                           <th className="text-center">DATE_PAYMENT</th>
                                            <th className="text-center">TRANPOST_FEE</th>
                                            <th className="text-center">TOTAL</th>
-                                           <th className="text-center">ACTION</th>
+                                           <th className="text-center" >ACTION</th>
                                            
                                        </tr>
                                    </thead>

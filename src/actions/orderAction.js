@@ -121,3 +121,27 @@ export const updateOrder = (id_order,status) => async (dispatch, getState) => {
     });
   }
 };
+
+export const refundOrder = (id_order) => async (dispatch, getState) => {
+  dispatch({ type: orderConstants.ORDER_REFUND_REQUEST});
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+      const { data } = await axios.put(`/order/admin/refund/${id_order}`,{},{
+          headers: {
+              'x-access-token': userInfo.token
+          }
+      });
+    dispatch({ type: orderConstants.ORDER_REFUND_SUCCESS, payload: data});
+    
+  } catch (error) {
+    dispatch({
+      type: orderConstants.ORDER_REFUND_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
